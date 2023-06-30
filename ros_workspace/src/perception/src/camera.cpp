@@ -44,8 +44,14 @@ int main(int argc, char **argv)
     ros::Subscriber color_image_sub = nh.subscribe("/camera/color/image_raw", 10, colorImageCallback);
     ros::Subscriber depth_image_sub = nh.subscribe("/camera/depth/image_rect_raw", 10, depthImageCallback);
 
+    // 定义两个窗口
+    cv::namedWindow("Color Image");
+    cv::namedWindow("Depth Image");
+
     // 进入ROS循环
-    ros::spin();
+    while (ros::ok()) {
+        ros::spinOnce();
+    }
 
     return 0;
 }
